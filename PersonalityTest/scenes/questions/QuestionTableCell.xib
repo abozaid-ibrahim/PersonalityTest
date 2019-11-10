@@ -17,24 +17,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stF-2q-2Zb">
-                        <rect key="frame" x="8" y="0.0" width="304" height="44"/>
+                        <rect key="frame" x="8" y="0.0" width="267" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ee9-Iv-QMv" customClass="AIFlatSwitch" customModule="AIFlatSwitch">
+                        <rect key="frame" x="283" y="9.5" width="25" height="25"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="BlB-Pk-Ntq"/>
+                            <constraint firstAttribute="height" constant="25" id="Onb-qd-IZ4"/>
+                        </constraints>
+                        <connections>
+                            <action selector="answerChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="Mp8-sI-QXS"/>
+                        </connections>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ee9-Iv-QMv" firstAttribute="leading" secondItem="stF-2q-2Zb" secondAttribute="trailing" constant="8" id="2vm-Ju-aJg"/>
                     <constraint firstAttribute="bottom" secondItem="stF-2q-2Zb" secondAttribute="bottom" id="3tT-4z-sGg"/>
+                    <constraint firstAttribute="trailing" secondItem="ee9-Iv-QMv" secondAttribute="trailing" constant="12" id="6ko-cg-kqK"/>
                     <constraint firstItem="stF-2q-2Zb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="9ze-Fi-t81"/>
                     <constraint firstItem="stF-2q-2Zb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FWe-Ip-Bwk"/>
-                    <constraint firstAttribute="trailing" secondItem="stF-2q-2Zb" secondAttribute="trailing" constant="8" id="M4Q-Hc-Y6k"/>
+                    <constraint firstItem="ee9-Iv-QMv" firstAttribute="centerY" secondItem="stF-2q-2Zb" secondAttribute="centerY" id="QCl-sZ-Tfn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="chooseAnswer" destination="ee9-Iv-QMv" id="2Dp-1g-HzJ"/>
                 <outlet property="nameLbl" destination="stF-2q-2Zb" id="1Ip-So-9jJ"/>
             </connections>
-            <point key="canvasLocation" x="139" y="118"/>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
         </tableViewCell>
     </objects>
 </document>

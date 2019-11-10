@@ -42,8 +42,8 @@ private extension QuestionsViewController {
         viewModel.questions.bind(onNext: setDataSource(sections:)).disposed(by: disposeBag)
 
         /// delegate
-        questionsTable.rx.itemSelected.bind(onNext: viewModel.answerQuestions(of:)).disposed(by: disposeBag)
-        questionsTable.rx.itemDeselected.bind(onNext: viewModel.removeAnswer(of:)).disposed(by: disposeBag)
+//        questionsTable.rx.itemSelected.bind(onNext: viewModel.answerQuestions(of:)).disposed(by: disposeBag)
+//        questionsTable.rx.itemDeselected.bind(onNext: viewModel.removeAnswer(of:)).disposed(by: disposeBag)
     }
 
     func setDataSource(sections: [QuestionSectionModel]) {
@@ -77,6 +77,9 @@ private extension QuestionsViewController {
                         return cell
                     default:
                         let cell: QuestionTableCell = table.dequeueReusableCell(withIdentifier: String(describing: QuestionTableCell.self), for: idxPath) as! QuestionTableCell
+                        cell.answerChanged.subscribe(onNext: {[unowned self] value in
+                            value ? self.viewModel.answerQuestions(of:idxPath) : self.viewModel.removeAnswer(of:idxPath)
+                        }).disposed(by: cell.disposeBag)
                         cell.setData(item)
                         return cell
                 }
