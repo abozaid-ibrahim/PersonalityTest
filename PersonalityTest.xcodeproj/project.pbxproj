@@ -212,10 +212,10 @@
 			children = (
 				6C6E9C482378752F0005FB9D /* QuestionsViewController.swift */,
 				6C6E9C492378752F0005FB9D /* QuestionsViewController.xib */,
-				6C6E9C642378823A0005FB9D /* Destination+Questions.swift */,
-				6C6E9C68237885DF0005FB9D /* QuestionsViewModel.swift */,
 				6C6E9C6A23788A1A0005FB9D /* QuestionTableCell.swift */,
 				6C6E9C6B23788A1A0005FB9D /* QuestionTableCell.xib */,
+				6C6E9C68237885DF0005FB9D /* QuestionsViewModel.swift */,
+				6C6E9C642378823A0005FB9D /* Destination+Questions.swift */,
 			);
 			path = questions;
 			sourceTree = "<group>";

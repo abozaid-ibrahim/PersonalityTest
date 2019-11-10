@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import RxOptional
 import RxSwift
 
@@ -44,15 +42,13 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return _error.asObservable()
     }
 
-    /// initializier
-    /// - Parameter apiClient: network handler
     init(repo: QuestionsRepo = QuestionsRepo(), category: Category) {
         self.dataRepository = repo
         self.category = category
     }
 
     func loadData() {
-        _questions.onNext(getQuestions(of: self.category))
+        _questions.onNext(getQuestions(of: category))
     }
 
     func answerQuestions(of question: Question) {}
@@ -61,7 +57,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
 // MARK: QuestionsListViewModel (Private)
 
 private extension QuestionsListViewModel {
-    func getQuestions(of cat: Category)->[Question] {
-        return dataRepository.loadQuestions().filter{$0.category == Optional<Category>.some(cat)}
+    func getQuestions(of cat: Category) -> [Question] {
+        return dataRepository.loadQuestions().filter { $0.category == Optional<Category>.some(cat) }
     }
 }
