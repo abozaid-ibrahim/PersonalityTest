@@ -14,6 +14,7 @@
 		6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */; };
 		6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */; };
 		6C6E9C2E23786DBB0005FB9D /* PersonalityTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C2D23786DBB0005FB9D /* PersonalityTestTests.swift */; };
+		6C6E9C3923786E4A0005FB9D /* Categories in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C3823786E4A0005FB9D /* Categories */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		6C6E9C2923786DBB0005FB9D /* PersonalityTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalityTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6E9C2D23786DBB0005FB9D /* PersonalityTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestTests.swift; sourceTree = "<group>"; };
 		6C6E9C2F23786DBB0005FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C6E9C3823786E4A0005FB9D /* Categories */ = {isa = PBXFileReference; lastKnownFileType = text; path = Categories; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */,
 				6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */,
 				6C6E9C2423786DBB0005FB9D /* Info.plist */,
+				6C6E9C3823786E4A0005FB9D /* Categories */,
 			);
 			path = PersonalityTest;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C6E9C3923786E4A0005FB9D /* Categories in Resources */,
 				6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */,
 				6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */,
 				6C6E9C1E23786DB80005FB9D /* Main.storyboard in Resources */,
