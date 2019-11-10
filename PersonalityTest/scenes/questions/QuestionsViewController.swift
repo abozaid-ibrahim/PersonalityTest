@@ -77,8 +77,8 @@ private extension QuestionsViewController {
                         return cell
                     default:
                         let cell: QuestionTableCell = table.dequeueReusableCell(withIdentifier: String(describing: QuestionTableCell.self), for: idxPath) as! QuestionTableCell
-                        cell.answerChanged.subscribe(onNext: {[unowned self] value in
-                            value ? self.viewModel.answerQuestions(of:idxPath) : self.viewModel.removeAnswer(of:idxPath)
+                        cell.answerChanged.subscribe(onNext: { [unowned self] value in
+                            value ? self.viewModel.answerQuestions(of: idxPath) : self.viewModel.removeAnswer(of: idxPath)
                         }).disposed(by: cell.disposeBag)
                         cell.setData(item)
                         return cell
@@ -87,12 +87,6 @@ private extension QuestionsViewController {
             },
             titleForHeaderInSection: { ds, section -> String? in
                 ds[section].question
-            },
-            canEditRowAtIndexPath: { _, _ in
-                false
-            },
-            canMoveRowAtIndexPath: { _, _ in
-                false
             }
         )
     }
