@@ -14,7 +14,8 @@
 		6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */; };
 		6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */; };
 		6C6E9C2E23786DBB0005FB9D /* PersonalityTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C2D23786DBB0005FB9D /* PersonalityTestTests.swift */; };
-		6C6E9C3923786E4A0005FB9D /* Categories in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C3823786E4A0005FB9D /* Categories */; };
+		6C6E9C3923786E4A0005FB9D /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C3823786E4A0005FB9D /* Categories.json */; };
+		6C6E9C4023786FEB0005FB9D /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C3F23786FEB0005FB9D /* CategoriesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,8 @@
 		6C6E9C2923786DBB0005FB9D /* PersonalityTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalityTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6E9C2D23786DBB0005FB9D /* PersonalityTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestTests.swift; sourceTree = "<group>"; };
 		6C6E9C2F23786DBB0005FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6C6E9C3823786E4A0005FB9D /* Categories */ = {isa = PBXFileReference; lastKnownFileType = text; path = Categories; sourceTree = "<group>"; };
+		6C6E9C3823786E4A0005FB9D /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		6C6E9C3F23786FEB0005FB9D /* CategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,8 @@
 		6C6E9C1523786DB80005FB9D /* PersonalityTest */ = {
 			isa = PBXGroup;
 			children = (
+				6C6E9C3B23786F0C0005FB9D /* scenes */,
+				6C6E9C3A23786F060005FB9D /* modules */,
 				6C6E9C1623786DB80005FB9D /* AppDelegate.swift */,
 				6C6E9C1823786DB80005FB9D /* SceneDelegate.swift */,
 				6C6E9C1A23786DB80005FB9D /* ViewController.swift */,
@@ -88,7 +92,7 @@
 				6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */,
 				6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */,
 				6C6E9C2423786DBB0005FB9D /* Info.plist */,
-				6C6E9C3823786E4A0005FB9D /* Categories */,
+				6C6E9C3823786E4A0005FB9D /* Categories.json */,
 			);
 			path = PersonalityTest;
 			sourceTree = "<group>";
@@ -100,6 +104,21 @@
 				6C6E9C2F23786DBB0005FB9D /* Info.plist */,
 			);
 			path = PersonalityTestTests;
+			sourceTree = "<group>";
+		};
+		6C6E9C3A23786F060005FB9D /* modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		6C6E9C3B23786F0C0005FB9D /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				6C6E9C3F23786FEB0005FB9D /* CategoriesResponse.swift */,
+			);
+			path = scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C6E9C3923786E4A0005FB9D /* Categories in Resources */,
+				6C6E9C3923786E4A0005FB9D /* Categories.json in Resources */,
 				6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */,
 				6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */,
 				6C6E9C1E23786DB80005FB9D /* Main.storyboard in Resources */,
@@ -205,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C6E9C1B23786DB80005FB9D /* ViewController.swift in Sources */,
+				6C6E9C4023786FEB0005FB9D /* CategoriesResponse.swift in Sources */,
 				6C6E9C1723786DB80005FB9D /* AppDelegate.swift in Sources */,
 				6C6E9C1923786DB80005FB9D /* SceneDelegate.swift in Sources */,
 			);
