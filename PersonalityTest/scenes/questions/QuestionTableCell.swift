@@ -7,16 +7,15 @@
 //
 
 import UIKit
+final class QuestionTableCell: UITableViewCell {
+    @IBOutlet private var nameLbl: UILabel!
 
-class QuestionTableCell: UITableViewCell {
-        @IBOutlet private var nameLbl: UILabel!
-
-        func setData(_ model: Question) {
-            nameLbl.text = model.question
-        }
-
-        override func awakeFromNib() {
-            super.awakeFromNib()
-            selectionStyle = .gray
-        }
+    func setData(_ model: String) {
+        nameLbl.text = model
     }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .gray
+    }
+}

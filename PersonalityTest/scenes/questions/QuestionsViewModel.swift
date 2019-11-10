@@ -12,7 +12,7 @@ import RxSwift
 
 protocol QuestionsViewModel {
     var showProgress: Observable<Bool> { get }
-    var questions: Observable<[Question]> { get }
+    var questions: Observable<[QuestionSectionModel]> { get }
     var error: Observable<Error> { get }
     func answerQuestions(of question: Question)
     func loadData()
@@ -23,7 +23,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
 
     private let disposeBag = DisposeBag()
     private let dataRepository: QuestionsRepo
-    private let _questions = PublishSubject<[Question]>()
+    private let _questions = PublishSubject<[QuestionSectionModel]>()
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
     private var category: Category
@@ -34,7 +34,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return _showProgress.asObservable()
     }
 
-    var questions: Observable<[Question]> {
+    var questions: Observable<[QuestionSectionModel]> {
         return _questions.asObservable()
     }
 
@@ -51,13 +51,23 @@ final class QuestionsListViewModel: QuestionsViewModel {
         _questions.onNext(getQuestions(of: category))
     }
 
-    func answerQuestions(of question: Question) {}
+    func answerQuestions(of question: Question) {
+        ///todo
+    }
 }
 
 // MARK: QuestionsListViewModel (Private)
 
 private extension QuestionsListViewModel {
-    func getQuestions(of cat: Category) -> [Question] {
-        return dataRepository.loadQuestions().filter { $0.category == Optional<Category>.some(cat) }
+    func getQuestions(of cat: Category) -> [QuestionSectionModel] {
+        return dataRepository.loadQuestions()
+            .filter { $0.category == Optional<Category>.some(cat) }
+            .map { $0.toSectionalModel() }
+    }
+}
+
+extension Question {
+    func toSectionalModel() -> QuestionSectionModel {
+        QuestionSectionModel(question: question ?? "", items: questionType?.options ?? [], condition: questionType?.condition, type: questionType?.type)
     }
 }
