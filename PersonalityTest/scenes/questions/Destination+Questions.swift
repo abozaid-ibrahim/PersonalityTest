@@ -11,7 +11,7 @@ import UIKit
 extension Destination {
     func getQuestionsView(for cat: Category) -> UIViewController {
         let questionsView = QuestionsViewController()
-
+        questionsView.viewModel = QuestionsListViewModel(category: cat)
         return questionsView
     }
 }

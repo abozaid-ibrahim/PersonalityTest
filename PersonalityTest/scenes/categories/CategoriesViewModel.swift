@@ -49,7 +49,7 @@ final class CategoriesListViewModel: CategoriesViewModel {
     }
 
     func loadData() {
-        _categories.onNext(dataRepository.loadQuestions())
+        _categories.onNext(dataRepository.loadCategories())
     }
 
     func showQuestionsList(of category: Category) {
@@ -57,17 +57,3 @@ final class CategoriesListViewModel: CategoriesViewModel {
     }
 }
 
-// MARK: AlbumsListViewModel (Private)
-
-private extension CategoriesListViewModel {
-    func loadOnlineData(_ showLoader: Bool) {
-//        showLoader ? showProgress.onNext(true) : ()
-//        let result: Observable<AlbumsResponse?> = apiClient.getData(of: AlbumsApi.albumsFor(artist: currentArtist?.name ?? ""))
-//        result.subscribe(onNext: { [unowned self] value in
-//            showLoader ? self.showProgress.onNext(false) : ()
-//            self.updateUIWithArtists(value?.topalbums?.album ?? [])
-//        }, onError: { [unowned self] err in
-//            self.error.onNext(err)
-//        }).disposed(by: disposeBag)
-    }
-}

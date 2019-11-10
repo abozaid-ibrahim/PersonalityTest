@@ -17,6 +17,6 @@ class CategoryTableCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .blue
+        selectionStyle = .none
     }
 }

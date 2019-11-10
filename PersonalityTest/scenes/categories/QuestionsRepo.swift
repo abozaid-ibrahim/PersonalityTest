@@ -9,10 +9,13 @@
 import Foundation
 final class QuestionsRepo{
     
-    func loadQuestions()->[Category]{
-
+    func loadCategories()->[Category]{
         let data  = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
         return data.categories ?? []
+    }
+    func loadQuestions()->[Question]{
+        let data  = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
+        return data.questions ?? []
     }
 }
 

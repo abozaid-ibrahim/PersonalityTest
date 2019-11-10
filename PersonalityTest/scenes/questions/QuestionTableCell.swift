@@ -9,16 +9,14 @@
 import UIKit
 
 class QuestionTableCell: UITableViewCell {
+        @IBOutlet private var nameLbl: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        func setData(_ model: Question) {
+            nameLbl.text = model.question
+        }
+
+        override func awakeFromNib() {
+            super.awakeFromNib()
+            selectionStyle = .gray
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-}
