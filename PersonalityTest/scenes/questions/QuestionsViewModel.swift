@@ -16,7 +16,7 @@ protocol QuestionsViewModel {
     var showProgress: Observable<Bool> { get }
     var questions: Observable<[Question]> { get }
     var error: Observable<Error> { get }
-    func answerQuestions(of question:Question)
+    func answerQuestions(of question: Question)
     func loadData()
 }
 
@@ -28,7 +28,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
     private let _questions = PublishSubject<[Question]>()
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
-    private var category: Category?
+    private var category: Category
 
     // MARK: Observers
 
@@ -46,23 +46,22 @@ final class QuestionsListViewModel: QuestionsViewModel {
 
     /// initializier
     /// - Parameter apiClient: network handler
-    init(repo: QuestionsRepo = QuestionsRepo(),category:Category) {
+    init(repo: QuestionsRepo = QuestionsRepo(), category: Category) {
         self.dataRepository = repo
         self.category = category
     }
 
     func loadData() {
-        _questions.onNext(dataRepository.loadQuestions())
+        _questions.onNext(getQuestions(of: self.category))
     }
 
-    func answerQuestions(of question: Question) {
-    }
+    func answerQuestions(of question: Question) {}
 }
 
 // MARK: QuestionsListViewModel (Private)
 
 private extension QuestionsListViewModel {
-    func getQuestions(of cat: Category) {
-        
+    func getQuestions(of cat: Category)->[Question] {
+        return dataRepository.loadQuestions().filter{$0.category == Optional<Category>.some(cat)}
     }
 }
