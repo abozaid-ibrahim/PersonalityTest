@@ -13,11 +13,19 @@ import RxSwift
 struct QuestionSectionModel {
     var question: String
     var items: [Item]
-    public let condition: Condition?
-    public let type: TypeEnum?
+    let condition: Condition?
+    let type: TypeEnum?
+    var answer: [String] = []
 }
 
-extension QuestionSectionModel: SectionModelType {
+extension QuestionSectionModel: AnimatableSectionModelType {
+    var identity: String {
+        self.question
+    }
+    
+    typealias Identity = String
+    
+    
     typealias Item = String
 
     init(original: QuestionSectionModel, items: [Item]) {

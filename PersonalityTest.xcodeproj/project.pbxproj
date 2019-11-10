@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6AD905EA50E80A309504A35B /* Pods_PersonalityTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58987F3C7E57C3997D5C9AA /* Pods_PersonalityTestTests.framework */; };
 		6C555F0E23789965006BD516 /* DataSourceSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C555F0D23789965006BD516 /* DataSourceSectionModel.swift */; };
+		6C555F102378BF4C006BD516 /* TableViewEditingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C555F0F2378BF4C006BD516 /* TableViewEditingCommand.swift */; };
 		6C6E9C1723786DB80005FB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C1623786DB80005FB9D /* AppDelegate.swift */; };
 		6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */; };
 		6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */; };
@@ -51,6 +52,7 @@
 		2DE8E7626C6CBD8B12FE265B /* Pods-PersonalityTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonalityTest.release.xcconfig"; path = "Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.release.xcconfig"; sourceTree = "<group>"; };
 		4732E5E9BFA7B5856E6AFD66 /* Pods_PersonalityTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalityTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C555F0D23789965006BD516 /* DataSourceSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSectionModel.swift; sourceTree = "<group>"; };
+		6C555F0F2378BF4C006BD516 /* TableViewEditingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewEditingCommand.swift; sourceTree = "<group>"; };
 		6C6E9C1323786DB80005FB9D /* PersonalityTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalityTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6E9C1623786DB80005FB9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				6C6E9C68237885DF0005FB9D /* QuestionsViewModel.swift */,
 				6C6E9C642378823A0005FB9D /* Destination+Questions.swift */,
 				6C555F0D23789965006BD516 /* DataSourceSectionModel.swift */,
+				6C555F0F2378BF4C006BD516 /* TableViewEditingCommand.swift */,
 			);
 			path = questions;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C6E9C6C23788A1A0005FB9D /* QuestionTableCell.swift in Sources */,
+				6C555F102378BF4C006BD516 /* TableViewEditingCommand.swift in Sources */,
 				6C6E9C50237877C10005FB9D /* TableViewExtension.swift in Sources */,
 				6C6E9C63237880350005FB9D /* Loadable.swift in Sources */,
 				6C6E9C45237870780005FB9D /* BundleExtension.swift in Sources */,

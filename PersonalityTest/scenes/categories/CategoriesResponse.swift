@@ -106,7 +106,7 @@ public struct IfPositive: Codable {
 
 // MARK: - IfPositiveQuestionType
 public struct IfPositiveQuestionType: Codable {
-    public let type: String?
+    public let type: TypeEnum?
     public let range: Range?
 
     enum CodingKeys: String, CodingKey {
@@ -114,7 +114,7 @@ public struct IfPositiveQuestionType: Codable {
         case range = "range"
     }
 
-    public init(type: String?, range: Range?) {
+    public init(type: TypeEnum?, range: Range?) {
         self.type = type
         self.range = range
     }
@@ -149,7 +149,8 @@ public struct Predicate: Codable {
     }
 }
 
-public enum TypeEnum: String, Codable {
+public enum TypeEnum: String, Codable,Equatable {
     case singleChoice = "single_choice"
     case singleChoiceConditional = "single_choice_conditional"
+    case numberRange = "number_range"
 }
