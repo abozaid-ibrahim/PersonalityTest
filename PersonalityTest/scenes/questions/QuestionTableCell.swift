@@ -23,8 +23,8 @@ final class QuestionTableCell: UITableViewCell {
         _answerClicked.onNext(sender.isSelected)
     }
 
-    func setData(_ model: String) {
-        nameLbl.text = model
+    func setData(_ model: AnswerCellData) {
+        nameLbl.text = model.option
     }
 
     override func awakeFromNib() {

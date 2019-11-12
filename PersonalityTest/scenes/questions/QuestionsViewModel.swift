@@ -19,10 +19,10 @@ protocol QuestionsViewModel {
     func answerQuestions(of: IndexPath)
     func removeAnswer(of: IndexPath)
     func loadData()
+    func submitAll(sender: Any)
 }
 
 final class QuestionsListViewModel: QuestionsViewModel {
-    
     // MARK: private state
 
     private let disposeBag = DisposeBag()
@@ -49,11 +49,12 @@ final class QuestionsListViewModel: QuestionsViewModel {
     var error: Observable<Error> {
         return _error.asObservable()
     }
-    var conditionalQuestion: Observable<TableViewEditingCommand>{
+
+    var conditionalQuestion: Observable<TableViewEditingCommand> {
         _showQuestion.asObservable()
     }
-    
-    var hideQuestion: Observable<TableViewEditingCommand>{
+
+    var hideQuestion: Observable<TableViewEditingCommand> {
         _hideQuestion.asObservable()
     }
 
@@ -69,16 +70,16 @@ final class QuestionsListViewModel: QuestionsViewModel {
 
     func answerQuestions(of: IndexPath) {
         guard let type = questionsBuffer[of.section].type else { return }
-        switch type {
-        case .singleChoice:
-            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
-        case .singleChoiceConditional:
-            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
-            guard let rowCommand =  showConditionalCell(questionsBuffer[of.section], index: of) else{return}
-            _showQuestion.onNext(rowCommand)
-        case .numberRange:
-            print("TODO")
-        }
+//        switch type {
+//        case .singleChoice:
+//            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
+//        case .singleChoiceConditional:
+//            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
+//            guard let rowCommand = showConditionalCell(questionsBuffer[of.section], index: of) else { return }
+//            _showQuestion.onNext(rowCommand)
+//        case .numberRange:
+//            print("TODO")
+//        }
     }
 
     func removeAnswer(of: IndexPath) {
@@ -86,14 +87,16 @@ final class QuestionsListViewModel: QuestionsViewModel {
         switch type {
         case .singleChoice:
             questionsBuffer[of.section].answer = []
-            
+
         case .singleChoiceConditional:
             questionsBuffer[of.section].answer = []
             _hideQuestion.onNext(TableViewEditingCommand.DeleteItem(of))
-            case .numberRange:
-                      print("TODO")
+        case .numberRange:
+            print("TODO")
         }
     }
+
+    func submitAll(sender: Any) {}
 
     func submitAnswers(of question: QuestionSectionModel, answer: String...) {
         ///todo
@@ -108,15 +111,17 @@ private extension QuestionsListViewModel {
             .filter { $0.category == Optional<Category>.some(cat) }
             .map { $0.toSectionalModel() }
     }
-    private func showConditionalCell(_ model: QuestionSectionModel, index:IndexPath)->TableViewEditingCommand?{
-        guard let obj = model.condition?.ifPositive else{return .none}
-        let conditionalQuestion = QuestionSectionModel(question: obj.question ?? "", items: [], condition:nil, type: obj.questionType?.type, answer: [])
-       return TableViewEditingCommand.AppendItem(item: model, section: index.section)
+
+    private func showConditionalCell(_ model: QuestionSectionModel, index: IndexPath) -> TableViewEditingCommand? {
+        guard let obj = model.condition?.ifPositive else { return .none }
+        let conditionalQuestion = QuestionSectionModel(question: obj.question ?? "", items: [], condition: nil, type: obj.questionType?.type, answer: [])
+        return TableViewEditingCommand.AppendItem(item: model, section: index.section)
     }
 }
 
 extension Question {
     func toSectionalModel() -> QuestionSectionModel {
-        QuestionSectionModel(question: question ?? "", items: questionType?.options ?? [], condition: questionType?.condition, type: questionType?.type)
+        let options = questionType?.options?.compactMap{AnswerCellData(option: $0)}
+        return QuestionSectionModel(question: question ?? "", items: options ?? [], condition: questionType?.condition, type: questionType?.type)
     }
 }
