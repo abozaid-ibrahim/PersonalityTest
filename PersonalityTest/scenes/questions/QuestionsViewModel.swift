@@ -16,7 +16,7 @@ protocol QuestionsViewModel {
     var error: Observable<Error> { get }
     var conditionalQuestion: Observable<TableViewEditingCommand> { get }
     var hideQuestion: Observable<TableViewEditingCommand> { get }
-    func answerQuestions(of: IndexPath)
+    func answerQuestions(of index:IndexPath)
     func removeAnswer(of: IndexPath)
     func loadData()
     func submitAll(sender: Any)
@@ -68,8 +68,10 @@ final class QuestionsListViewModel: QuestionsViewModel {
         _questions.onNext(questionsBuffer)
     }
 
-    func answerQuestions(of: IndexPath) {
-        guard let type = questionsBuffer[of.section].type else { return }
+    func answerQuestions(of index: IndexPath) {
+//        guard let type = questionsBuffer[of.section].type else { return }
+        guard let rowCommand = showSubmitCell(index: index) else { return }
+//        _showQuestion.onNext(rowCommand)
 //        switch type {
 //        case .singleChoice:
 //            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
@@ -112,16 +114,20 @@ private extension QuestionsListViewModel {
             .map { $0.toSectionalModel() }
     }
 
-    private func showConditionalCell(_ model: QuestionSectionModel, index: IndexPath) -> TableViewEditingCommand? {
-        guard let obj = model.condition?.ifPositive else { return .none }
-        let conditionalQuestion = QuestionSectionModel(question: obj.question ?? "", items: [], condition: nil, type: obj.questionType?.type, answer: [])
-        return TableViewEditingCommand.AppendItem(item: model, section: index.section)
-    }
+//    private func showConditionalCell(_ model: QuestionSectionModel, index: IndexPath) -> TableViewEditingCommand? {
+////        guard let obj = model.condition?.ifPositive else { return .none }
+//        let cellData = AnswerCellData(option: "XXX", isSelected: false)
+//        return TableViewEditingCommand.AppendItem(item: cellData, index: index)
+//    }
+    private func showSubmitCell(index: IndexPath) -> TableViewEditingCommand? {
+        let cellData = AnswerCellData(option: "Submit", cellType: .submitCell(state: false))
+          return TableViewEditingCommand.AppendItem(item: cellData, index: index)
+      }
 }
 
 extension Question {
     func toSectionalModel() -> QuestionSectionModel {
-        let options = questionType?.options?.compactMap{AnswerCellData(option: $0)}
+        let options = questionType?.options?.compactMap { AnswerCellData(option: $0) }
         return QuestionSectionModel(question: question ?? "", items: options ?? [], condition: questionType?.condition, type: questionType?.type)
     }
 }

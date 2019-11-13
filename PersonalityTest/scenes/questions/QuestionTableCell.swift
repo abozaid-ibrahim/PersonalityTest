@@ -25,11 +25,16 @@ final class QuestionTableCell: UITableViewCell {
 
     func setData(_ model: AnswerCellData) {
         nameLbl.text = model.option
+        chooseAnswer.setSelected(model.isSelected, animated: true)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+         disposeBag = DisposeBag()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        disposeBag = DisposeBag()
+       
     }
 }

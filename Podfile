@@ -11,6 +11,8 @@ target 'PersonalityTest' do
   pod 'RxSwiftExt'
   pod 'RxDataSources'
   pod 'AIFlatSwitch'
+  pod 'Eureka'
+
   target 'PersonalityTestTests' do
     inherit! :search_paths
     

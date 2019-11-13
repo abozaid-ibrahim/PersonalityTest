@@ -14,7 +14,7 @@ import UIKit
 
 final class QuestionsViewController: UIViewController, Loadable {
     @IBOutlet private var questionsTable: UITableView!
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     var viewModel: QuestionsViewModel!
 
     override func viewDidLoad() {
@@ -23,6 +23,11 @@ final class QuestionsViewController: UIViewController, Loadable {
         bindToViewModel()
         viewModel.loadData()
     }
+
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        disposeBag = DisposeBag()
+//    }
 }
 
 // MARK: QuestionsViewController (Private)
@@ -35,11 +40,15 @@ private extension QuestionsViewController {
         customView.backgroundColor = UIColor.darkGray
         let button = UIButton(frame: CGRect(x: 10, y: 0, width: questionsTable.bounds.width - CGFloat(20.0), height: 50))
         button.titleLabel?.textAlignment = .center
-        
+
         button.setTitle("Submit All", for: .normal)
-        button.rx.tap.bind(onNext: viewModel.submitAll(sender:)).disposed(by: disposeBag)
+        button.rx.tap.bind(onNext: submitAnswers(sender:)).disposed(by: disposeBag)
         customView.addSubview(button)
         questionsTable.tableFooterView = customView
+    }
+
+    func submitAnswers(sender: Any) {
+        viewModel.submitAll(sender: sender)
     }
 
     func bindToViewModel() {
@@ -49,7 +58,6 @@ private extension QuestionsViewController {
         /// datasource
 
         viewModel.questions.bind(onNext: setDataSource(sections:)).disposed(by: disposeBag)
-        
     }
 
     func setDataSource(sections: [QuestionSectionModel]) {
@@ -64,7 +72,7 @@ private extension QuestionsViewController {
             .map {
                 $0.sections
             }
-            .share(replay: 1)
+            .share(replay: 0)
             .bind(to: questionsTable.rx.items(dataSource: _dataSource))
             .disposed(by: disposeBag)
     }
@@ -75,29 +83,29 @@ private extension QuestionsViewController {
                                                            reloadAnimation: .fade,
                                                            deleteAnimation: .left),
             configureCell: { ds, table, idxPath, item in
-                switch ds[idxPath].range {
-                case .none:
+                switch ds[idxPath].cellType {
+                case .optionRange:
                     let cell: QuestionTableCell = table.dequeueReusableCell(withIdentifier: String(describing: QuestionTableCell.self), for: idxPath) as! QuestionTableCell
                     cell.answerChanged.subscribe(onNext: { [unowned self] value in
                         value ? self.viewModel.answerQuestions(of: idxPath) : self.viewModel.removeAnswer(of: idxPath)
                     }).disposed(by: cell.disposeBag)
                     cell.setData(item)
                     return cell
-                default:
+                case .optionTextCell:
                     let cell: QuestionTableCell = table.dequeueReusableCell(withIdentifier: String(describing: QuestionTableCell.self), for: idxPath) as! QuestionTableCell
                     cell.answerChanged.subscribe(onNext: { [unowned self] value in
                         value ? self.viewModel.answerQuestions(of: idxPath) : self.viewModel.removeAnswer(of: idxPath)
                     }).disposed(by: cell.disposeBag)
                     cell.setData(item)
+                    return cell
+                case .submitCell:
+                    let cell: SubmitionTableCell = table.dequeueReusableCell(withIdentifier: String(describing: SubmitionTableCell.self), for: idxPath) as! SubmitionTableCell
                     return cell
                 }
 
             },
             titleForHeaderInSection: { ds, section -> String? in
                 ds[section].question
-            },
-            titleForFooterInSection: { _, _ in
-                "Submit"
             }
         )
     }

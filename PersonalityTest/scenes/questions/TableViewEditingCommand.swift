@@ -9,7 +9,7 @@
 import Foundation
 
 enum TableViewEditingCommand {
-    case AppendItem(item: QuestionSectionModel, section: Int)
+    case AppendItem(item: AnswerCellData, index: IndexPath)
     case answerQuestion
     case DeleteItem(IndexPath)
 }
@@ -25,11 +25,10 @@ struct SectionedTableViewState {
 
     func execute(command: TableViewEditingCommand) -> SectionedTableViewState {
         switch command {
-        case .AppendItem(let appendEvent):
-            var sections = self.sections
-            let items = sections[appendEvent.section].items // + appendEvent.item
-//            sections[appendEvent.section] = NumberSection(original: sections[appendEvent.section], items: items)
-            return SectionedTableViewState(sections: sections)
+        case .AppendItem(let item, let index):
+            var newSections = self.sections
+//            newSections[index.section].items.append(item)
+            return SectionedTableViewState(sections: [])
         case .DeleteItem(let indexPath):
             var sections = self.sections
             var items = sections[indexPath.section].items

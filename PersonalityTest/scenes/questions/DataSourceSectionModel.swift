@@ -46,4 +46,11 @@ struct AnswerCellData:IdentifiableType,Equatable{
     let option:String
     var isSelected: Bool = false
     let range: Range? = nil
+    var cellType:AnswerCellType = .optionTextCell
+}
+enum AnswerCellType{
+    case submitCell(state:Bool)
+    case optionTextCell
+    case optionRange
+    
 }
