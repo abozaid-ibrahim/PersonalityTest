@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 final class SubmitionTableCell: UITableViewCell {
-    override var reuseIdentifier: String?{
+    override var reuseIdentifier: String? {
         return String(describing: self)
     }
+
     lazy var submitionView = SubmitionView(frame: self.bounds)
     func setData(submitted: Bool) {
         addSubview(submitionView)
@@ -21,13 +22,13 @@ final class SubmitionTableCell: UITableViewCell {
     }
 }
 
-class SubmitionView: UIView {
+final class SubmitionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
 
-     func setupViews() {
+    func setupViews() {
         backgroundColor = UIColor.darkGray
         let button = UILabel()
         button.textAlignment = .center

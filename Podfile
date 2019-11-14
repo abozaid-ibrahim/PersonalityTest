@@ -9,8 +9,6 @@ target 'PersonalityTest' do
   pod 'RxCocoa'
   pod "RxGesture"
   pod 'RxSwiftExt'
-  pod 'RxDataSources'
-  pod 'AIFlatSwitch'
   pod 'Eureka'
 
   target 'PersonalityTestTests' do

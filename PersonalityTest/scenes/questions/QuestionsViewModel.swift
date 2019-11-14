@@ -11,13 +11,11 @@ import RxOptional
 import RxSwift
 
 protocol QuestionsViewModel {
+    var category: Category{get}
     var showProgress: Observable<Bool> { get }
-    var questions: Observable<[QuestionSectionModel]> { get }
+    var questions: Observable<[Question]> { get }
     var error: Observable<Error> { get }
-    var conditionalQuestion: Observable<TableViewEditingCommand> { get }
-    var hideQuestion: Observable<TableViewEditingCommand> { get }
-    func answerQuestions(of index:IndexPath)
-    func removeAnswer(of: IndexPath)
+    func answerQuestions(of index: IndexPath)
     func loadData()
     func submitAll(sender: Any)
 }
@@ -27,14 +25,10 @@ final class QuestionsListViewModel: QuestionsViewModel {
 
     private let disposeBag = DisposeBag()
     private let dataRepository: QuestionsRepo
-    private let _questions = PublishSubject<[QuestionSectionModel]>()
+    private let _questions = PublishSubject<[Question]>()
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
-    private var category: Category
-    private let _hideQuestion = PublishSubject<TableViewEditingCommand>()
-    private let _showQuestion = PublishSubject<TableViewEditingCommand>()
-
-    private var questionsBuffer: [QuestionSectionModel] = []
+    private(set) var category: Category
 
     // MARK: Observers
 
@@ -42,20 +36,12 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return _showProgress.asObservable()
     }
 
-    var questions: Observable<[QuestionSectionModel]> {
+    var questions: Observable<[Question]> {
         return _questions.asObservable()
     }
 
     var error: Observable<Error> {
         return _error.asObservable()
-    }
-
-    var conditionalQuestion: Observable<TableViewEditingCommand> {
-        _showQuestion.asObservable()
-    }
-
-    var hideQuestion: Observable<TableViewEditingCommand> {
-        _hideQuestion.asObservable()
     }
 
     init(repo: QuestionsRepo = QuestionsRepo(), category: Category) {
@@ -64,70 +50,17 @@ final class QuestionsListViewModel: QuestionsViewModel {
     }
 
     func loadData() {
-        questionsBuffer = getQuestions(of: category)
-        _questions.onNext(questionsBuffer)
+        let xxx = dataRepository.loadQuestions()
+            .filter { $0.category == Optional<Category>.some(category) }
+
+        _questions.onNext(xxx)
     }
 
     func answerQuestions(of index: IndexPath) {
-//        guard let type = questionsBuffer[of.section].type else { return }
-        guard let rowCommand = showSubmitCell(index: index) else { return }
-//        _showQuestion.onNext(rowCommand)
-//        switch type {
-//        case .singleChoice:
-//            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
-//        case .singleChoiceConditional:
-//            questionsBuffer[of.section].answer = [questionsBuffer[of.section].items[of.row]]
-//            guard let rowCommand = showConditionalCell(questionsBuffer[of.section], index: of) else { return }
-//            _showQuestion.onNext(rowCommand)
-//        case .numberRange:
-//            print("TODO")
-//        }
+        /// should change in the data and send them to server
     }
 
-    func removeAnswer(of: IndexPath) {
-        guard let type = questionsBuffer[of.section].type else { return }
-        switch type {
-        case .singleChoice:
-            questionsBuffer[of.section].answer = []
-
-        case .singleChoiceConditional:
-            questionsBuffer[of.section].answer = []
-            _hideQuestion.onNext(TableViewEditingCommand.DeleteItem(of))
-        case .numberRange:
-            print("TODO")
-        }
-    }
-
-    func submitAll(sender: Any) {}
-
-    func submitAnswers(of question: QuestionSectionModel, answer: String...) {
+    func submitAll(sender: Any) {
         ///todo
-    }
-}
-
-// MARK: QuestionsListViewModel (Private)
-
-private extension QuestionsListViewModel {
-    func getQuestions(of cat: Category) -> [QuestionSectionModel] {
-        return dataRepository.loadQuestions()
-            .filter { $0.category == Optional<Category>.some(cat) }
-            .map { $0.toSectionalModel() }
-    }
-
-//    private func showConditionalCell(_ model: QuestionSectionModel, index: IndexPath) -> TableViewEditingCommand? {
-////        guard let obj = model.condition?.ifPositive else { return .none }
-//        let cellData = AnswerCellData(option: "XXX", isSelected: false)
-//        return TableViewEditingCommand.AppendItem(item: cellData, index: index)
-//    }
-    private func showSubmitCell(index: IndexPath) -> TableViewEditingCommand? {
-        let cellData = AnswerCellData(option: "Submit", cellType: .submitCell(state: false))
-          return TableViewEditingCommand.AppendItem(item: cellData, index: index)
-      }
-}
-
-extension Question {
-    func toSectionalModel() -> QuestionSectionModel {
-        let options = questionType?.options?.compactMap { AnswerCellData(option: $0) }
-        return QuestionSectionModel(question: question ?? "", items: options ?? [], condition: questionType?.condition, type: questionType?.type)
     }
 }
