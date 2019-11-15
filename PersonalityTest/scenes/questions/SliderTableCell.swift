@@ -10,12 +10,12 @@ import Eureka
 import RxSwift
 import UIKit
 
-open class SliderTableCell: Cell<Bool>, CellType {
+final class SliderTableCell: Cell<Bool>, CellType {
     @IBOutlet var slider: UISlider!
     @IBOutlet private var titleLbl: UILabel!
     @IBOutlet private var valueLbl: UILabel!
     private var disposeBag = DisposeBag()
-    public required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         editingAccessoryView = accessoryView
     }
@@ -29,37 +29,37 @@ open class SliderTableCell: Cell<Bool>, CellType {
         slider.rx.value.map { String($0) }.bind(to: valueLbl.rx.text).disposed(by: disposeBag)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    open override func prepareForReuse() {
+    override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
 
-    open override func setup() {
+    override func setup() {
         super.setup()
         selectionStyle = .none
     }
 
-    open override func update() {
+    override func update() {
         super.update()
     }
 }
 
 // MARK: SwitchRow
 
-open class _OptionSliderRow: Row<SliderTableCell> {
-    public required init(tag: String?) {
+class _OptionSliderRow: Row<SliderTableCell> {
+    required init(tag: String?) {
         super.init(tag: tag)
         displayValueFor = nil
     }
 }
 
 /// Boolean row that has a UISwitch as accessoryType
-public final class OptionSliderRow: _OptionSliderRow, RowType {
-    public required init(tag: String?) {
+final class OptionSliderRow: _OptionSliderRow, RowType {
+    required init(tag: String?) {
         super.init(tag: tag)
     }
 }

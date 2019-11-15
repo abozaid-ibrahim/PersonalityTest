@@ -117,6 +117,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6C0C87E3237ED970007B8060 /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				6C6E9C1623786DB80005FB9D /* AppDelegate.swift */,
+				6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */,
+				6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */,
+				6C6E9C3823786E4A0005FB9D /* questions.json */,
+			);
+			path = "supporting files";
+			sourceTree = "<group>";
+		};
 		6C6E9C0A23786DB80005FB9D = {
 			isa = PBXGroup;
 			children = (
@@ -141,14 +152,11 @@
 		6C6E9C1523786DB80005FB9D /* PersonalityTest */ = {
 			isa = PBXGroup;
 			children = (
+				6C6E9C2423786DBB0005FB9D /* Info.plist */,
+				6C0C87E3237ED970007B8060 /* supporting files */,
 				6C6E9C41237870580005FB9D /* extensions */,
 				6C6E9C3A23786F060005FB9D /* modules */,
 				6C6E9C3B23786F0C0005FB9D /* scenes */,
-				6C6E9C1623786DB80005FB9D /* AppDelegate.swift */,
-				6C6E9C1F23786DBB0005FB9D /* Assets.xcassets */,
-				6C6E9C2123786DBB0005FB9D /* LaunchScreen.storyboard */,
-				6C6E9C2423786DBB0005FB9D /* Info.plist */,
-				6C6E9C3823786E4A0005FB9D /* questions.json */,
 			);
 			path = PersonalityTest;
 			sourceTree = "<group>";

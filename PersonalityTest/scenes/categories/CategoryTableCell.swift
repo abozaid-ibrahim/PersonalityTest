@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryTableCell: UITableViewCell {
+final class CategoryTableCell: UITableViewCell {
     @IBOutlet private var nameLbl: UILabel!
 
     func setData(_ model: QCategory) {

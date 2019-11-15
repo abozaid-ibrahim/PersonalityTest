@@ -6,7 +6,7 @@
 * iOS 10.0+
 
 ### General Application Frameworks
-RxSwift/RxCocoa: [Reactive Programming](https://github.com/ReactiveX/RxSwift)
+Eureka : [UI Builder](https://github.com/xmartlabs/Eureka)
 RxSwift/RxCocoa: [Reactive Programming](https://github.com/ReactiveX/RxSwift)
 
 # Getting Started
@@ -14,56 +14,13 @@ If this is your first time encountering swift/ios development, please follow [th
 
 ## Setup Configs
 * Open the project by double clicking the `PersonalityTest.xcworkspace` file
-* Locate the `Configs` directory and delete `Development, Production and Staging` file.
-* Re-Create the Config files (Staging, Development and Production) and place it in the Cofigs directory. See sample below
-
-`Development.xcconfig`
 ```
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.debug (development).xcconfig"
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.release (development).xcconfig"
-
 // App Settings
 APP_NAME = Personality Test (Dev)
 PRODUCT_BUNDLE_IDENTIFIER = com.abuzeid.PersonalityTest.dev
 
-// PersonalityTest Root URL
-PersonalityTest_ROOT_URL = https:/$()/api.PersonalityTest.com/services/rest/
-
-// PersonalityTest API Key
-PersonalityTest_API_KEY = PersonalityTest_api_key
 ```
 
-`Production.xcconfig`
-```
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.debug (production).xcconfig"
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.release (production).xcconfig"
-
-// App Settings
-APP_NAME = Personality Test (Dev)
-PRODUCT_BUNDLE_IDENTIFIER = com.abuzeid.PersonalityTest.dev
-
-// PersonalityTest Root URL
-PersonalityTest_ROOT_URL = https:/$()/api.PersonalityTest.com/services/rest/
-
-// PersonalityTest API Key
-PersonalityTest_API_KEY = PersonalityTest_api_key
-```
-
-`Staging.xcconfig`
-```
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.debug (staging).xcconfig"
-#include "Pods/Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.release (staging).xcconfig"
-
-// App Settings
-APP_NAME = Personality Test (Dev)
-PRODUCT_BUNDLE_IDENTIFIER = com.abuzeid.PersonalityTest.dev
-
-// PersonalityTest Root URL
-PersonalityTest_ROOT_URL = https:/$()/api.PersonalityTest.com/services/rest/
-
-// PersonalityTest API Key
-PersonalityTest_API_KEY = PersonalityTest_api_key
-```
 
 # In your terminal, go to the project root directory. Make sure you have cocoapods setup, then run:
 pod install
@@ -101,19 +58,13 @@ This is to group every component's extension / reusable functions
 ### Scenes
 This is for group of app scene 
 
-### Configs
-This is for handling configs needed by the app
+### supproting files
+This is grouping for appdelege, info, launch screen
 
-## Task
-
-* Display categories of questions with title text
-* Selecting a category opens list of questions
-* you could either submit question by question or you could submit all of them once
-* Testing 😞 
-
-## Solution
-* Setup config for project
-* Provide a single entry for request handling and caching
 
 ## Improvements
 * Unit test the view model
+* handle errors
+* improve logs
+* add staging environment
+
