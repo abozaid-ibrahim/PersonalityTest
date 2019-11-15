@@ -15,8 +15,8 @@ enum Destination {
     func controller() -> UIViewController {
         switch self {
         case .categories:
-            return self.getCategoriesView()
-        case .questions(let cat):
+            return getCategoriesView()
+        case let .questions(cat):
             return getQuestionsView(for: cat)
         }
     }

@@ -66,7 +66,7 @@ class QuestionsViewModelTests: QuickSpec {
                     selectAnswer = schedular.createColdObservable([
                         Recorded.next(0, IndexPath(row: 0, section: 0)),
                         Recorded.next(0, IndexPath(row: 0, section: 1)),
-                        Recorded.next(0, IndexPath(row: 0, section: 2))
+                        Recorded.next(0, IndexPath(row: 0, section: 2)),
                     ])
                     viewModel.questions.bind(to: questionsObserver).disposed(by: disposeBag)
                     selectAnswer.subscribe(onNext: { value in
