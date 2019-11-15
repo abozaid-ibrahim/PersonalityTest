@@ -27,19 +27,23 @@ enum Category: String, Codable {
 struct Question: Codable {
     let question: String?
     let category: Category?
-    let questionType: QuestionQuestionType?
+    var answered = false
+    let answers: QuestionOptions?
 
     enum CodingKeys: String, CodingKey {
         case question
         case category
-        case questionType = "question_type"
+        case answers = "question_type"
+    }
+    mutating func setAnswered(_ ans:Bool){
+        answered = ans
     }
 
 }
 
 // MARK: - QuestionQuestionType
 
-struct QuestionQuestionType: Codable {
+struct QuestionOptions: Codable {
     let type: QTypeEnum?
     let options: [String]?
     let condition: Condition?
@@ -50,6 +54,10 @@ struct QuestionQuestionType: Codable {
 struct Condition: Codable {
     let predicate: Predicate?
     let ifPositive: IfPositive?
+    enum CodingKeys: String, CodingKey {
+           case predicate
+           case ifPositive = "if_positive"
+       }
 }
 
 // MARK: - IfPositive

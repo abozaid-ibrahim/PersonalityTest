@@ -11,13 +11,15 @@ import RxOptional
 import RxSwift
 
 protocol QuestionsViewModel {
-    var category: Category{get}
+    var category: Category { get }
     var showProgress: Observable<Bool> { get }
     var questions: Observable<[Question]> { get }
     var error: Observable<Error> { get }
-    func answerQuestions(of index: IndexPath)
+    var allIsAnswered: Bool { get }
+    func questionIsAnswered(index: IndexPath) -> Bool
+    func answerQuestions(answered: Bool, for index: IndexPath)
     func loadData()
-    func submitAll(sender: Any)
+    func submitAll()
 }
 
 final class QuestionsListViewModel: QuestionsViewModel {
@@ -29,6 +31,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
     private(set) var category: Category
+    private var questionsList: [Question] = []
 
     // MARK: Observers
 
@@ -44,23 +47,30 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return _error.asObservable()
     }
 
+    var allIsAnswered: Bool {
+        return questionsList.allSatisfy { $0.answered }
+    }
+
     init(repo: QuestionsRepo = QuestionsRepo(), category: Category) {
         self.dataRepository = repo
         self.category = category
     }
 
     func loadData() {
-        let xxx = dataRepository.loadQuestions()
+        questionsList = dataRepository.loadQuestions()
             .filter { $0.category == Optional<Category>.some(category) }
-
-        _questions.onNext(xxx)
+        _questions.onNext(questionsList)
     }
 
-    func answerQuestions(of index: IndexPath) {
-        /// should change in the data and send them to server
+    func questionIsAnswered(index: IndexPath) -> Bool {
+        return questionsList[index.section].answered
     }
 
-    func submitAll(sender: Any) {
+    func answerQuestions(answered: Bool, for index: IndexPath) {
+        questionsList[index.section].setAnswered(answered)
+    }
+
+    func submitAll() {
         ///todo
     }
 }

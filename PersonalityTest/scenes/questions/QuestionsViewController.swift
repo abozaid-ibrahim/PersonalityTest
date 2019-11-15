@@ -18,8 +18,8 @@ final class QuestionsViewController: FormViewController, Loadable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.sectionFooterHeight = 1
-        self.title = viewModel.category.rawValue.capitalized
+        tableView.sectionFooterHeight = 1
+        title = viewModel.category.rawValue.capitalized
         bindToViewModel()
         viewModel.loadData()
     }
@@ -28,28 +28,32 @@ final class QuestionsViewController: FormViewController, Loadable {
 // MARK: QuestionsViewController (ViewBuilder)
 
 private extension QuestionsViewController {
-    var conditionalRowTag: String { "afasdfkasdjfkasdf" }
+    var submitted: UIColor { UIColor.green.withAlphaComponent(0.3) }
     func setDataSource(sections: [Question]) {
         for question in sections.enumerated() {
-            insertSection(for: question.element, question.offset)
+            insertSection(for: question.element, in: question.offset)
         }
         form +++ Section()
-            <<< ButtonRow() { (row: ButtonRow) -> Void in
+            <<< ButtonRow() { [weak self] row in
+                guard let self = self else { return }
                 row.title = "Submit All"
-            }
-            .onCellSelection { [weak self] cell, _ in
-                // validator
-                self?.submitAll()
-                cell.backgroundColor = .lightGray
-                cell.isUserInteractionEnabled = false
+                let ruleRequiredViaClosure = RuleClosure<String> { _ in
+                    self.viewModel.allIsAnswered ? nil : ValidationError(msg: "Field required!")
+                }
+                row.add(rule: ruleRequiredViaClosure)
+                row.validationOptions = .validatesOnDemand
+            }.cellUpdate { cell, row in
+                cell.backgroundColor = row.isValid ? .white : UIColor.red.withAlphaComponent(0.3)
+            }.onCellSelection { _, row in
+                row.validate()
             }
     }
 
-    func insertSection(for question: Question, _ sIndex: Int) {
+    func insertSection(for question: Question, in sIndex: Int) {
         form +++ SelectableSection<ImageCheckRow<String>>() { section in
             section.header = HeaderFooterView(title: question.question)
         }
-        let options = question.questionType?.options ?? []
+        let options = question.answers?.options ?? []
         for index in 0..<options.count {
             let option = options[index]
             let uid = "\(question.question ?? "")_\(option)_\(sIndex)_\(index)"
@@ -57,52 +61,64 @@ private extension QuestionsViewController {
                 lrow.title = option
                 lrow.selectableValue = option
                 lrow.value = nil
-            }.onChange { row in
-                if row.value == nil { // deselect
-                    row.section?.removeAll(where: { $0.tag == .some(self.submitRowTag(for: question.question, row.title, index: index)) })
-                    row.section?.allRows
-                        .filter { $0.tag == .some(self.conditionalRowTag) }
-                        .forEach { $0.baseCell.height = { 0 } }
-
-                } else { // select
-                    if question.questionType?.type == QTypeEnum.singleChoiceConditional {
-                        if question.questionType?.condition?.predicate.value?.exactEquals == [row.value!] {
-                            row.section?.allRows[row.indexPath!.row + 1].baseCell.height = { 60 }
-                        }
-                    }
-                    self.addSubmitButton(for: row, question.question, row.value, index: IndexPath(row: index, section: sIndex))
-                }
+            }.onChange { [weak self] row in
+                self?.onOptionSelected(question, row: row, sIndex: sIndex, index: index)
             }
-
-            appendConditionalAnswerCell(question)
         }
+    }
+
+    func onOptionSelected(_ question: Question, row: ImageCheckRow<String>, sIndex: Int, index: Int) {
+        if row.value == nil { /// deselect
+            row.section?.removeAll(where: { $0.tag == .some(self.submitRowTag(for: question.question, row.title, index: index)) })
+            row.section?.removeAll(where: { $0.tag == .some(self.conditionalRowTag(IndexPath(row: index, section: sIndex))) })
+        } else { // select
+            appendConditionalAnswerCell(row.section!, current: row.value ?? "", question, IndexPath(row: index, section: sIndex))
+            addSubmitButton(for: row, question.question, row.value, index: IndexPath(row: index, section: sIndex))
+        }
+        viewModel.answerQuestions(answered: row.value != nil, for: IndexPath(row: index, section: sIndex))
     }
 
     func addSubmitButton(for row: ImageCheckRow<String>, _ question: String?, _ title: String?, index: IndexPath) {
-        row.section! <<< ButtonRow { (row: ButtonRow) -> Void in
+        row.section! <<< ButtonRow { [weak self] row in
+            guard let self = self else { return }
             row.title = "Submit"
             row.tag = submitRowTag(for: question, title, index: index.row)
-        }
-        .onCellSelection { [weak self] cell, row in
-            self?.viewModel.answerQuestions(of: index)
-            cell.backgroundColor = UIColor.green.withAlphaComponent(0.3)
-            cell.isUserInteractionEnabled = false
+            let ruleRequiredViaClosure = RuleClosure<String> { _ in
+                if self.viewModel.questionIsAnswered(index: index) {
+                    self.viewModel.answerQuestions(answered: true, for: index)
+                    row.baseCell.backgroundColor = self.submitted
+                    return nil
+                } else {
+                    return ValidationError(msg: "Field required!")
+                }
+            }
+            row.add(rule: ruleRequiredViaClosure)
+            row.validationOptions = .validatesOnDemand
+        }.onCellSelection { _, row in
+            row.validate()
+        }.cellUpdate { cell, row in
+            cell.backgroundColor = row.isValid ? .white : UIColor.red.withAlphaComponent(0.3)
         }
     }
 
-    func appendConditionalAnswerCell(_ question: Question?) {
-        guard let qst = question?.questionType,
-            let type = qst.type,
-            let range = qst.condition?.ifPositive?.questionType?.range else { return }
+    func appendConditionalAnswerCell(_ cell: Section, current: String, _ question: Question?, _ index: IndexPath) {
+        guard let options = question?.answers,
+            let type = options.type,
+            let secondQ = options.condition?.ifPositive,
+            let range = secondQ.questionType?.range,
+            let required = options.condition?.predicate?.exactEquals?.last else {
+            return
+        }
+        guard required == current else {
+            return
+        }
         if case QTypeEnum.singleChoiceConditional = type {
-            form.last! <<< SliderRow {
-                //                        $0.title = question?.questionType?.condition?.
-                $0.value = Float(range.from ?? 0)
-                $0.tag = conditionalRowTag
+            cell <<< OptionSliderRow {
+                $0.cellProvider = CellProvider<SliderTableCell>(nibName: "SliderTableCell", bundle: Bundle.main)
+                $0.tag = conditionalRowTag(index)
             }.cellSetup { cell, _ in
-                cell.height = { 0 }
+                cell.setData(min: Float(range.from ?? 0), max: Float(range.to ?? 0), title: secondQ.question)
             }
-            //
         }
     }
 }
@@ -110,10 +126,6 @@ private extension QuestionsViewController {
 // MARK: QuestionsViewController (Private)
 
 private extension QuestionsViewController {
-    func submitAnswers(sender: Any) {
-        viewModel.submitAll(sender: sender)
-    }
-
     func bindToViewModel() {
         viewModel.showProgress
             .asDriver(onErrorJustReturn: false)
@@ -121,13 +133,11 @@ private extension QuestionsViewController {
         viewModel.questions.bind(onNext: setDataSource(sections:)).disposed(by: disposeBag)
     }
 
-    func submitAll() {
-        print(#function)
-    }
-
-   
-
     func submitRowTag(for q: String?, _ opt: String?, index: Int) -> String {
         return "\(q ?? "")_\(opt ?? "")_\(index)"
+    }
+
+    func conditionalRowTag(_ index: IndexPath) -> String {
+        return "#\(index.section)_A_\(index.row)"
     }
 }
