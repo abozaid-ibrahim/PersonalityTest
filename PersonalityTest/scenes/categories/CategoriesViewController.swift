@@ -44,6 +44,6 @@ private extension CategoriesViewController {
                 cell.setData(model)
             }.disposed(by: disposeBag)
         /// delegate
-        categoriesTable.rx.modelSelected(Category.self).bind(onNext: viewModel.showQuestionsList(of:)).disposed(by: disposeBag)
+        categoriesTable.rx.modelSelected(QCategory.self).bind(onNext: viewModel.showQuestionsList(of:)).disposed(by: disposeBag)
     }
 }

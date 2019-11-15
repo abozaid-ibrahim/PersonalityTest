@@ -7,6 +7,7 @@
 
 ### General Application Frameworks
 RxSwift/RxCocoa: [Reactive Programming](https://github.com/ReactiveX/RxSwift)
+RxSwift/RxCocoa: [Reactive Programming](https://github.com/ReactiveX/RxSwift)
 
 # Getting Started
 If this is your first time encountering swift/ios development, please follow [the instructions](https://developer.apple.com/support/xcode/) to setup Xcode and Swift on your Mac. And to setup cocoapods for dependency management, make use of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)

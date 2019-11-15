@@ -12,9 +12,9 @@ import RxSwift
 
 protocol CategoriesViewModel {
     var showProgress: Observable<Bool> { get }
-    var categories: Observable<[Category]> { get }
+    var categories: Observable<[QCategory]> { get }
     var error: Observable<Error> { get }
-    func showQuestionsList(of category: Category)
+    func showQuestionsList(of category: QCategory)
     func loadData()
 }
 
@@ -22,11 +22,11 @@ final class CategoriesListViewModel: CategoriesViewModel {
     // MARK: private state
 
     private let disposeBag = DisposeBag()
-    private let dataRepository: QuestionsRepo
-    private let _categories = PublishSubject<[Category]>()
+    private let dataRepository: QuestionsRepository
+    private let _categories = PublishSubject<[QCategory]>()
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
-    private var currentCategory: Category?
+    private var currentCategory: QCategory?
 
     // MARK: Observers
 
@@ -34,7 +34,7 @@ final class CategoriesListViewModel: CategoriesViewModel {
         return _showProgress.asObservable()
     }
 
-    var categories: Observable<[Category]> {
+    var categories: Observable<[QCategory]> {
         return _categories.asObservable()
     }
 
@@ -44,7 +44,7 @@ final class CategoriesListViewModel: CategoriesViewModel {
 
     /// initializier
     /// - Parameter apiClient: network handler
-    init(repo: QuestionsRepo = QuestionsRepo()) {
+    init(repo: QuestionsRepository = QuestionsRepo()) {
         self.dataRepository = repo
     }
 
@@ -52,7 +52,7 @@ final class CategoriesListViewModel: CategoriesViewModel {
         _categories.onNext(dataRepository.loadCategories())
     }
 
-    func showQuestionsList(of category: Category) {
+    func showQuestionsList(of category: QCategory) {
         try? AppNavigator().push(.questions(category))
     }
 }

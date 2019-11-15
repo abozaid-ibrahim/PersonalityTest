@@ -11,7 +11,7 @@ import UIKit
 class CategoryTableCell: UITableViewCell {
     @IBOutlet private var nameLbl: UILabel!
 
-    func setData(_ model: Category) {
+    func setData(_ model: QCategory) {
         nameLbl.text = model.rawValue
     }
 

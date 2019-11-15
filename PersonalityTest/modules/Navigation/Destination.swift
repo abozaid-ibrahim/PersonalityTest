@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 enum Destination {
     case categories,
-        questions(Category)
+        questions(QCategory)
 
     func controller() -> UIViewController {
         switch self {

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 extension Destination {
-    func getQuestionsView(for cat: Category) -> UIViewController {
+    func getQuestionsView(for cat: QCategory) -> UIViewController {
         let questionsView = QuestionsViewController()
         questionsView.viewModel = QuestionsListViewModel(category: cat)
         return questionsView

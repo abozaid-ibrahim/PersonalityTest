@@ -11,11 +11,11 @@ import Foundation
 // MARK: - CategoriesResponse
 
 struct CategoriesResponse: Codable {
-    let categories: [Category]?
+    let categories: [QCategory]?
     let questions: [Question]?
 }
 
-enum Category: String, Codable {
+enum QCategory: String, Codable, CaseIterable {
     case hardFact = "hard_fact"
     case introversion
     case lifestyle
@@ -26,7 +26,7 @@ enum Category: String, Codable {
 
 struct Question: Codable {
     let question: String?
-    let category: Category?
+    let category: QCategory?
     var answered = false
     let answers: QuestionOptions?
 
@@ -35,10 +35,16 @@ struct Question: Codable {
         case category
         case answers = "question_type"
     }
-    mutating func setAnswered(_ ans:Bool){
+
+    mutating func setAnswered(_ ans: Bool) {
         answered = ans
     }
+}
 
+extension Question: Equatable {
+    static func == (lhs: Question, rhs: Question) -> Bool {
+        return lhs.question == rhs.question
+    }
 }
 
 // MARK: - QuestionQuestionType
@@ -55,16 +61,16 @@ struct Condition: Codable {
     let predicate: Predicate?
     let ifPositive: IfPositive?
     enum CodingKeys: String, CodingKey {
-           case predicate
-           case ifPositive = "if_positive"
-       }
+        case predicate
+        case ifPositive = "if_positive"
+    }
 }
 
 // MARK: - IfPositive
 
 struct IfPositive: Codable {
     let question: String?
-    let category: Category?
+    let category: QCategory?
     let questionType: IfPositiveQuestionType?
 
     enum CodingKeys: String, CodingKey {

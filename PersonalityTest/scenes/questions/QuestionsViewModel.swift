@@ -11,7 +11,7 @@ import RxOptional
 import RxSwift
 
 protocol QuestionsViewModel {
-    var category: Category { get }
+    var category: QCategory { get }
     var showProgress: Observable<Bool> { get }
     var questions: Observable<[Question]> { get }
     var error: Observable<Error> { get }
@@ -26,11 +26,11 @@ final class QuestionsListViewModel: QuestionsViewModel {
     // MARK: private state
 
     private let disposeBag = DisposeBag()
-    private let dataRepository: QuestionsRepo
+    private let dataRepository: QuestionsRepository
     private let _questions = PublishSubject<[Question]>()
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
-    private(set) var category: Category
+    private(set) var category: QCategory
     private var questionsList: [Question] = []
 
     // MARK: Observers
@@ -51,14 +51,14 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return questionsList.allSatisfy { $0.answered }
     }
 
-    init(repo: QuestionsRepo = QuestionsRepo(), category: Category) {
+    init(repo: QuestionsRepository = QuestionsRepo(), category: QCategory) {
         self.dataRepository = repo
         self.category = category
     }
 
     func loadData() {
         questionsList = dataRepository.loadQuestions()
-            .filter { $0.category == Optional<Category>.some(category) }
+            .filter { $0.category == Optional<QCategory>.some(category) }
         _questions.onNext(questionsList)
     }
 

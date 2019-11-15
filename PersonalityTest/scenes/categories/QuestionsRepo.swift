@@ -7,15 +7,19 @@
 //
 
 import Foundation
-final class QuestionsRepo{
-    
-    func loadCategories()->[Category]{
-        let data  = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
+protocol QuestionsRepository {
+    func loadQuestions() -> [Question]
+    func loadCategories() -> [QCategory]
+}
+
+final class QuestionsRepo: QuestionsRepository {
+    func loadCategories() -> [QCategory] {
+        let data = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
         return data.categories ?? []
     }
-    func loadQuestions()->[Question]{
-        let data  = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
+
+    func loadQuestions() -> [Question] {
+        let data = Bundle.main.decode(CategoriesResponse.self, from: "questions.json")
         return data.questions ?? []
     }
 }
-
