@@ -54,7 +54,7 @@ private extension QuestionsViewController {
             section.header = HeaderFooterView(title: question.question)
         }
         let options = question.answers?.options ?? []
-        for index in 0..<options.count {
+        for index in 0 ..< options.count {
             let option = options[index]
             let uid = "\(question.question ?? "")_\(option)_\(sIndex)_\(index)"
             form.last! <<< ImageCheckRow<String>(uid) { lrow in

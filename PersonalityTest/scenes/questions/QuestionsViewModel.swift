@@ -52,7 +52,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
     }
 
     init(repo: QuestionsRepository = QuestionsRepo(), category: QCategory) {
-        self.dataRepository = repo
+        dataRepository = repo
         self.category = category
     }
 

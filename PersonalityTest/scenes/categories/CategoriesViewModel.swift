@@ -45,7 +45,7 @@ final class CategoriesListViewModel: CategoriesViewModel {
     /// initializier
     /// - Parameter apiClient: network handler
     init(repo: QuestionsRepository = QuestionsRepo()) {
-        self.dataRepository = repo
+        dataRepository = repo
     }
 
     func loadData() {
@@ -56,4 +56,3 @@ final class CategoriesListViewModel: CategoriesViewModel {
         try? AppNavigator().push(.questions(category))
     }
 }
-

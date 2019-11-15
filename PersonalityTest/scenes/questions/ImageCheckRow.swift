@@ -23,7 +23,7 @@ final class ImageCheckCell<T: Equatable>: Cell<T>, CellType {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
