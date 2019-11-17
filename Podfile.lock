@@ -1,4 +1,5 @@
 PODS:
+  - AIFlatSwitch (1.0.7)
   - Differentiator (4.0.1)
   - Eureka (5.1.0)
   - Nimble (7.3.4)
@@ -41,6 +42,7 @@ PODS:
     - RxSwift (~> 5)
 
 DEPENDENCIES:
+  - AIFlatSwitch
   - Eureka
   - Nimble
   - Quick
@@ -56,6 +58,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AIFlatSwitch
     - Differentiator
     - Eureka
     - Nimble
@@ -72,6 +75,7 @@ SPEC REPOS:
     - RxTest
 
 SPEC CHECKSUMS:
+  AIFlatSwitch: fd56a5e6ab8769f0b52cef815c4f071e83050352
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
@@ -87,6 +91,6 @@ SPEC CHECKSUMS:
   RxSwiftExt: 0d2fd77523a169d1459be34961b996a194bdef0e
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
 
-PODFILE CHECKSUM: 9faf86a774396110060bc5a65ab1e112f31936be
+PODFILE CHECKSUM: d47e87bd1a6e273362e58e6a5591797959a54329
 
 COCOAPODS: 1.8.4

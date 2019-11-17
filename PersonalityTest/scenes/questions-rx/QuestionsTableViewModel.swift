@@ -14,11 +14,20 @@ final class QuestionsTableViewModel {
 
     private let disposeBag = DisposeBag()
     private let dataRepository: QuestionsRepository
-    private let _questions = PublishSubject<[QuestionSectionModel]>()
+    private let _questions = BehaviorSubject<[QuestionSectionModel]>(value: [])
     private let _showProgress = PublishSubject<Bool>()
     private let _error = PublishSubject<Error>()
     private(set) var category: QCategory
-    private var questionsList: [Question] = []
+    private var questionsList: [QuestionSectionModel] {
+        do {
+            return try _questions.value()
+        } catch {
+            log(.error, error)
+            return []
+        }
+    }
+
+    lazy var changesCommand = TableViewEditingCommand()
 
     // MARK: Observers
 
@@ -44,7 +53,7 @@ final class QuestionsTableViewModel {
     }
 
     func loadData() {
-        questionsList = dataRepository.loadQuestions()
+        let questionsList = dataRepository.loadQuestions()
             .filter { $0.category == Optional<QCategory>.some(category) }
 
         var sections: [QuestionSectionModel] = []
@@ -70,17 +79,20 @@ final class QuestionsTableViewModel {
     }
 
     func answerQuestions(answered: Bool, for index: IndexPath) {
-        questionsList[index.section].setAnswered(answered)
+//        questionsList[index.section].setAnswered(answered)
     }
 
     func submitAll() {
         ///todo
     }
-    
-    
-    func itemSelected( index: IndexPath) {
-          
-      }
-     func itemDeSelected( index: IndexPath) {
-     }
+
+    func itemSelected(index: IndexPath) {
+        let newValue = changesCommand.itemDeSelected(questions: questionsList, index: index)
+        _questions.onNext(newValue)
+    }
+
+    func itemDeSelected(index: IndexPath) {
+        let newValue = changesCommand.itemDeSelected(questions: questionsList, index: index)
+        _questions.onNext(newValue)
+    }
 }

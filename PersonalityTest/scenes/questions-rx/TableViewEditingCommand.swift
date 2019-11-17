@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct TableViewEditingCommand {
+final class TableViewEditingCommand {
     func itemSelected(questions: [QuestionSectionModel], index: IndexPath) -> [QuestionSectionModel] {
         var sections = questions
         let section = sections[index.section]
