@@ -41,7 +41,7 @@ private extension CategoriesViewController {
         viewModel.categories
             .bind(to: categoriesTable.rx.items(cellIdentifier:
                 String(describing: CategoryTableCell.self), cellType: CategoryTableCell.self)) { _, model, cell in
-                cell.setData(model)
+                    cell.setData(model)
             }.disposed(by: disposeBag)
         /// delegate
         categoriesTable.rx.modelSelected(QCategory.self).bind(onNext: viewModel.showQuestionsList(of:)).disposed(by: disposeBag)
