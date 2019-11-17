@@ -10,7 +10,7 @@ target 'PersonalityTest' do
   pod "RxGesture"
   pod 'RxSwiftExt'
   pod 'Eureka'
-
+pod 'RxDataSources'
   target 'PersonalityTestTests' do
     inherit! :search_paths
     

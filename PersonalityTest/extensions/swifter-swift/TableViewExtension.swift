@@ -22,3 +22,8 @@ extension UITableView {
         tableFooterView = UIView()
     }
 }
+extension UITableViewCell{
+    static var identifier:String{
+        return String(describing: self)
+    }
+}

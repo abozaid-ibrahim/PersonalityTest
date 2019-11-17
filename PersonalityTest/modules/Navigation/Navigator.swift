@@ -18,7 +18,7 @@ protocol Navigator {
 final class AppNavigator: Navigator {
     private static var rootController: UINavigationController!
     init(window: UIWindow) {
-        AppNavigator.rootController = UINavigationController(rootViewController: Destination.categories.controller())
+        AppNavigator.rootController = UINavigationController(rootViewController: RXViewController())
         window.rootViewController = AppNavigator.rootController
         window.makeKeyAndVisible()
     }

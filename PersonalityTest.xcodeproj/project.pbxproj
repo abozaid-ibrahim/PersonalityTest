@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		6AD905EA50E80A309504A35B /* Pods_PersonalityTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58987F3C7E57C3997D5C9AA /* Pods_PersonalityTestTests.framework */; };
 		6C0C87E2237EC0E9007B8060 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6C0C87E1237EC0E9007B8060 /* README.md */; };
+		6C552B2C23815F1600D239BB /* RXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C552B2A23815F1600D239BB /* RXViewController.swift */; };
+		6C552B2D23815F1600D239BB /* RXViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C552B2B23815F1600D239BB /* RXViewController.xib */; };
+		6C552B302381633B00D239BB /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C552B2E2381633B00D239BB /* RxTableViewCell.swift */; };
+		6C552B312381633B00D239BB /* RxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C552B2F2381633B00D239BB /* RxTableViewCell.xib */; };
+		6C552B352381845C00D239BB /* SubmitTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C552B332381845C00D239BB /* SubmitTableCell.swift */; };
+		6C552B362381845C00D239BB /* SubmitTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C552B342381845C00D239BB /* SubmitTableCell.xib */; };
+		6C552B392381849800D239BB /* RangeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C552B372381849800D239BB /* RangeTableCell.swift */; };
+		6C552B3A2381849800D239BB /* RangeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C552B382381849800D239BB /* RangeTableCell.xib */; };
 		6C5A8CE9237C979400DD5B75 /* UIView+Constrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5A8CE8237C979400DD5B75 /* UIView+Constrains.swift */; };
 		6C5A8CF1237CAA5F00DD5B75 /* ImageCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5A8CF0237CAA5F00DD5B75 /* ImageCheckRow.swift */; };
 		6C6E9C1723786DB80005FB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C1623786DB80005FB9D /* AppDelegate.swift */; };
@@ -35,6 +43,9 @@
 		6C6E9C69237885DF0005FB9D /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6E9C68237885DF0005FB9D /* QuestionsViewModel.swift */; };
 		6CB02182237EACA900168CF1 /* SliderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB02180237EACA900168CF1 /* SliderTableCell.swift */; };
 		6CB02183237EACA900168CF1 /* SliderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB02181237EACA900168CF1 /* SliderTableCell.xib */; };
+		6CF1658323818B9E000DF94E /* DataSourceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF1658223818B9E000DF94E /* DataSourceModels.swift */; };
+		6CF1658523818BE1000DF94E /* QuestionsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF1658423818BE1000DF94E /* QuestionsTableViewModel.swift */; };
+		6CF1658723818CAA000DF94E /* TableViewEditingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF1658623818CAA000DF94E /* TableViewEditingCommand.swift */; };
 		E4160C0A10407E5642FA5674 /* Pods_PersonalityTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4732E5E9BFA7B5856E6AFD66 /* Pods_PersonalityTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +63,14 @@
 		2DE8E7626C6CBD8B12FE265B /* Pods-PersonalityTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonalityTest.release.xcconfig"; path = "Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.release.xcconfig"; sourceTree = "<group>"; };
 		4732E5E9BFA7B5856E6AFD66 /* Pods_PersonalityTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalityTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C0C87E1237EC0E9007B8060 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6C552B2A23815F1600D239BB /* RXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewController.swift; sourceTree = "<group>"; };
+		6C552B2B23815F1600D239BB /* RXViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RXViewController.xib; sourceTree = "<group>"; };
+		6C552B2E2381633B00D239BB /* RxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
+		6C552B2F2381633B00D239BB /* RxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RxTableViewCell.xib; sourceTree = "<group>"; };
+		6C552B332381845C00D239BB /* SubmitTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitTableCell.swift; sourceTree = "<group>"; };
+		6C552B342381845C00D239BB /* SubmitTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmitTableCell.xib; sourceTree = "<group>"; };
+		6C552B372381849800D239BB /* RangeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeTableCell.swift; sourceTree = "<group>"; };
+		6C552B382381849800D239BB /* RangeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeTableCell.xib; sourceTree = "<group>"; };
 		6C5A8CE8237C979400DD5B75 /* UIView+Constrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constrains.swift"; sourceTree = "<group>"; };
 		6C5A8CF0237CAA5F00DD5B75 /* ImageCheckRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCheckRow.swift; sourceTree = "<group>"; };
 		6C6E9C1323786DB80005FB9D /* PersonalityTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalityTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +101,9 @@
 		6C6E9C68237885DF0005FB9D /* QuestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewModel.swift; sourceTree = "<group>"; };
 		6CB02180237EACA900168CF1 /* SliderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableCell.swift; sourceTree = "<group>"; };
 		6CB02181237EACA900168CF1 /* SliderTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableCell.xib; sourceTree = "<group>"; };
+		6CF1658223818B9E000DF94E /* DataSourceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceModels.swift; sourceTree = "<group>"; };
+		6CF1658423818BE1000DF94E /* QuestionsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewModel.swift; sourceTree = "<group>"; };
+		6CF1658623818CAA000DF94E /* TableViewEditingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewEditingCommand.swift; sourceTree = "<group>"; };
 		9A1B6AD36A8BE63B8CC0F5C2 /* Pods-PersonalityTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonalityTest.debug.xcconfig"; path = "Target Support Files/Pods-PersonalityTest/Pods-PersonalityTest.debug.xcconfig"; sourceTree = "<group>"; };
 		B58987F3C7E57C3997D5C9AA /* Pods_PersonalityTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalityTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF63BA1B7429E37DEB25FAB /* Pods-PersonalityTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonalityTestTests.debug.xcconfig"; path = "Target Support Files/Pods-PersonalityTestTests/Pods-PersonalityTestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +148,24 @@
 				6C6E9C3823786E4A0005FB9D /* questions.json */,
 			);
 			path = "supporting files";
+			sourceTree = "<group>";
+		};
+		6C552B322381843000D239BB /* questions-rx */ = {
+			isa = PBXGroup;
+			children = (
+				6C552B2A23815F1600D239BB /* RXViewController.swift */,
+				6C552B2B23815F1600D239BB /* RXViewController.xib */,
+				6C552B2E2381633B00D239BB /* RxTableViewCell.swift */,
+				6C552B2F2381633B00D239BB /* RxTableViewCell.xib */,
+				6C552B332381845C00D239BB /* SubmitTableCell.swift */,
+				6C552B342381845C00D239BB /* SubmitTableCell.xib */,
+				6C552B372381849800D239BB /* RangeTableCell.swift */,
+				6C552B382381849800D239BB /* RangeTableCell.xib */,
+				6CF1658223818B9E000DF94E /* DataSourceModels.swift */,
+				6CF1658423818BE1000DF94E /* QuestionsTableViewModel.swift */,
+				6CF1658623818CAA000DF94E /* TableViewEditingCommand.swift */,
+			);
+			path = "questions-rx";
 			sourceTree = "<group>";
 		};
 		6C6E9C0A23786DB80005FB9D = {
@@ -182,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				6C6E9C522378781B0005FB9D /* categories */,
+				6C552B322381843000D239BB /* questions-rx */,
 				6C6E9C51237878160005FB9D /* questions */,
 			);
 			path = scenes;
@@ -352,8 +393,12 @@
 				6C6E9C3923786E4A0005FB9D /* questions.json in Resources */,
 				6C6E9C2323786DBB0005FB9D /* LaunchScreen.storyboard in Resources */,
 				6C0C87E2237EC0E9007B8060 /* README.md in Resources */,
+				6C552B3A2381849800D239BB /* RangeTableCell.xib in Resources */,
 				6CB02183237EACA900168CF1 /* SliderTableCell.xib in Resources */,
+				6C552B312381633B00D239BB /* RxTableViewCell.xib in Resources */,
+				6C552B362381845C00D239BB /* SubmitTableCell.xib in Resources */,
 				6C6E9C2023786DBB0005FB9D /* Assets.xcassets in Resources */,
+				6C552B2D23815F1600D239BB /* RXViewController.xib in Resources */,
 				6C6E9C6123787FB20005FB9D /* CategoryTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,19 +500,26 @@
 			files = (
 				6C6E9C50237877C10005FB9D /* TableViewExtension.swift in Sources */,
 				6CB02182237EACA900168CF1 /* SliderTableCell.swift in Sources */,
+				6CF1658723818CAA000DF94E /* TableViewEditingCommand.swift in Sources */,
 				6C6E9C63237880350005FB9D /* Loadable.swift in Sources */,
 				6C6E9C45237870780005FB9D /* BundleExtension.swift in Sources */,
 				6C6E9C652378823A0005FB9D /* Destination+Questions.swift in Sources */,
 				6C6E9C5B23787B430005FB9D /* Destination.swift in Sources */,
 				6C5A8CF1237CAA5F00DD5B75 /* ImageCheckRow.swift in Sources */,
 				6C6E9C5D23787B660005FB9D /* Navigator.swift in Sources */,
+				6CF1658523818BE1000DF94E /* QuestionsTableViewModel.swift in Sources */,
+				6CF1658323818B9E000DF94E /* DataSourceModels.swift in Sources */,
 				6C6E9C4A2378752F0005FB9D /* QuestionsViewController.swift in Sources */,
+				6C552B392381849800D239BB /* RangeTableCell.swift in Sources */,
 				6C6E9C47237873030005FB9D /* QuestionsRepo.swift in Sources */,
+				6C552B2C23815F1600D239BB /* RXViewController.swift in Sources */,
 				6C6E9C4023786FEB0005FB9D /* CategoriesResponse.swift in Sources */,
 				6C6E9C672378824C0005FB9D /* Destination+Categories.swift in Sources */,
 				6C6E9C1723786DB80005FB9D /* AppDelegate.swift in Sources */,
+				6C552B352381845C00D239BB /* SubmitTableCell.swift in Sources */,
 				6C6E9C69237885DF0005FB9D /* QuestionsViewModel.swift in Sources */,
 				6C6E9C6023787FB20005FB9D /* CategoryTableCell.swift in Sources */,
+				6C552B302381633B00D239BB /* RxTableViewCell.swift in Sources */,
 				6C6E9C552378784A0005FB9D /* CategoriesViewController.swift in Sources */,
 				6C6E9C4E2378779D0005FB9D /* Logger.swift in Sources */,
 				6C6E9C58237878C10005FB9D /* CategoriesViewModel.swift in Sources */,
@@ -555,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -609,7 +661,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -625,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 475YN7ANSF;
 				INFOPLIST_FILE = PersonalityTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 475YN7ANSF;
 				INFOPLIST_FILE = PersonalityTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
