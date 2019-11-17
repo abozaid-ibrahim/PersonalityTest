@@ -71,6 +71,6 @@ final class QuestionsListViewModel: QuestionsViewModel {
     }
 
     func submitAll() {
-        ///todo
+        ///todo, should send all submitted data to server
     }
 }
