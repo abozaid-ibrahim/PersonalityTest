@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 final class SliderTableCell: Cell<Bool>, CellType {
-    @IBOutlet var slider: UISlider!
+    @IBOutlet private var slider: UISlider!
     @IBOutlet private var titleLbl: UILabel!
     @IBOutlet private var valueLbl: UILabel!
     private var disposeBag = DisposeBag()

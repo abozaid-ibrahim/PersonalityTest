@@ -18,7 +18,7 @@ protocol CategoriesViewModel {
     func loadData()
 }
 
-final class CategoriesListViewModel: CategoriesViewModel {
+struct CategoriesListViewModel: CategoriesViewModel {
     // MARK: private state
 
     private let disposeBag = DisposeBag()
