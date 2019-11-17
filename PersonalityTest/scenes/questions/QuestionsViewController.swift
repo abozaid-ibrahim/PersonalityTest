@@ -96,8 +96,8 @@ private extension QuestionsViewController {
             row.validationOptions = .validatesOnDemand
         }.onCellSelection { _, row in
             row.validate()
-        }.cellUpdate { cell, row in
-            cell.backgroundColor = row.isValid ? .white : UIColor.red.withAlphaComponent(0.3)
+        }.cellUpdate {[unowned self] _, row in
+            row.baseCell.backgroundColor = (row.isValid && self.viewModel.questionIsAnswered(index: index)) ? self.submitted : .white
         }
     }
 

@@ -12,7 +12,7 @@ final class CategoryTableCell: UITableViewCell {
     @IBOutlet private var nameLbl: UILabel!
 
     func setData(_ model: QCategory) {
-        nameLbl.text = model.rawValue
+        nameLbl.text = model.rawValue.capitalized
     }
 
     override func awakeFromNib() {
