@@ -34,6 +34,10 @@ PODS:
     - RxSwiftExt/Core
   - RxTest (5.0.1):
     - RxSwift (~> 5)
+  - SpecLeaks (0.1.8):
+    - Nimble
+    - Quick
+  - SwiftLint (0.37.0)
 
 DEPENDENCIES:
   - Eureka
@@ -47,6 +51,8 @@ DEPENDENCIES:
   - RxSwift
   - RxSwiftExt
   - RxTest
+  - SpecLeaks
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -62,6 +68,8 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxTest
+    - SpecLeaks
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
@@ -76,7 +84,9 @@ SPEC CHECKSUMS:
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxSwiftExt: 0d2fd77523a169d1459be34961b996a194bdef0e
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
+  SpecLeaks: 0fa048f06b1adb36d8d3e86e039b5f67bf74bb06
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
-PODFILE CHECKSUM: cf0fa46645c61dc09158c2039d3cf3b6f5168734
+PODFILE CHECKSUM: f6ade9a0f62baab222247a85a386842904c7b4d7
 
 COCOAPODS: 1.8.4

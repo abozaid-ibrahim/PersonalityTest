@@ -11,7 +11,7 @@ import RxOptional
 import RxSwift
 import UIKit
 
-final class CategoriesViewController: UIViewController, Loadable {
+final class CategoriesViewController: UIViewController {
     @IBOutlet private var categoriesTable: UITableView!
     private let disposeBag = DisposeBag()
     var viewModel: CategoriesViewModel!
@@ -34,9 +34,7 @@ private extension CategoriesViewController {
     }
 
     func bindToViewModel() {
-        viewModel.showProgress
-            .asDriver(onErrorJustReturn: false)
-            .drive(onNext: showLoading(show:)).disposed(by: disposeBag)
+       
         /// datasource
         viewModel.categories
             .bind(to: categoriesTable.rx.items(cellIdentifier:

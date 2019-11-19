@@ -38,7 +38,7 @@ private extension QuestionsViewController {
             <<< ButtonRow() { [weak self] row in
                 guard let self = self else { return }
                 row.title = "Submit All"
-                let ruleRequiredViaClosure = RuleClosure<String> { _ in
+                let ruleRequiredViaClosure = RuleClosure<String> {[unowned self] _ in
                     self.viewModel.allIsAnswered ? nil : ValidationError(msg: "Field required!")
                 }
                 row.add(rule: ruleRequiredViaClosure)
@@ -84,7 +84,7 @@ private extension QuestionsViewController {
             guard let self = self else { return }
             row.title = "Submit"
             row.tag = submitRowTag(for: question, title, index: index.row)
-            let ruleRequiredViaClosure = RuleClosure<String> { _ in
+            let ruleRequiredViaClosure = RuleClosure<String> {[unowned self] _ in
                 if self.viewModel.questionIsAnswered(index: index) {
                     self.viewModel.answerQuestions(answered: true, for: index)
                     row.baseCell.backgroundColor = self.submitted
@@ -128,10 +128,15 @@ private extension QuestionsViewController {
 
 private extension QuestionsViewController {
     func bindToViewModel() {
-        viewModel.showProgress
-            .asDriver(onErrorJustReturn: false)
-            .drive(onNext: showLoading(show:)).disposed(by: disposeBag)
-        viewModel.questions.bind(onNext: setDataSource(sections:)).disposed(by: disposeBag)
+        viewModel.showProgress.subscribe(onNext: {[unowned self] value in
+            self.showLoading(show:value)
+        }).disposed(by: disposeBag)
+        viewModel.questions.subscribe(onNext: {[unowned self] value in
+            self.setDataSource(sections:value)
+        }).disposed(by: disposeBag)
+        
+        
+//        bind(onNext: ).disposed(by: disposeBag)
     }
 
     func submitRowTag(for q: String?, _ opt: String?, index: Int) -> String {

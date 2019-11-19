@@ -10,10 +10,12 @@ target 'PersonalityTest' do
   pod "RxGesture"
   pod 'RxSwiftExt'
   pod 'Eureka'
+ pod 'SwiftLint'
 
   target 'PersonalityTestTests' do
     inherit! :search_paths
-    
+    pod 'SpecLeaks'
+
     pod 'RxBlocking'
     pod 'RxTest'
     pod 'Quick'

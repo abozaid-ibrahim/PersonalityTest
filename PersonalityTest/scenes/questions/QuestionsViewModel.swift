@@ -17,12 +17,12 @@ protocol QuestionsViewModel {
     var error: Observable<Error> { get }
     var allIsAnswered: Bool { get }
     func questionIsAnswered(index: IndexPath) -> Bool
-    func answerQuestions(answered: Bool, for index: IndexPath)
-    func loadData()
+    mutating func answerQuestions(answered: Bool, for index: IndexPath)
+    mutating func loadData()
     func submitAll()
 }
 
-final class QuestionsListViewModel: QuestionsViewModel {
+struct QuestionsListViewModel: QuestionsViewModel {
     // MARK: private state
 
     private let disposeBag = DisposeBag()
@@ -56,7 +56,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
         self.category = category
     }
 
-    func loadData() {
+    mutating func loadData() {
         questionsList = dataRepository.loadQuestions()
             .filter { $0.category == Optional<QCategory>.some(category) }
         _questions.onNext(questionsList)
@@ -66,7 +66,7 @@ final class QuestionsListViewModel: QuestionsViewModel {
         return questionsList[index.section].answered
     }
 
-    func answerQuestions(answered: Bool, for index: IndexPath) {
+    mutating func answerQuestions(answered: Bool, for index: IndexPath) {
         questionsList[index.section].setAnswered(answered)
     }
 
