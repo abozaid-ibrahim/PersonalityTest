@@ -1,0 +1,6 @@
+framework module Pods_PersonalityTestTests {
+  umbrella header "Pods-PersonalityTestTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
